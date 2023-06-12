@@ -1,0 +1,31 @@
+// coding ninjas -> https://www.codingninjas.com/codestudio/problems/missing-and-repeating-numbers_8230733?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        // Write your code here
+        int[] ans = {-1,-1};
+        int[] frq = new int[n+1];
+        int sum = 0;
+        for(int i:arr) {
+            frq[i]++;
+            sum+=i;
+        }
+
+        // repeating number
+        for(int i=0;i<=n;i++){
+            if(frq[i]>1){
+                ans[1] = i;
+                break;
+            }
+        }
+        
+        // missing number  = totalSum_to_n - (total sum of array - reaptetd number)
+        ans[0] = n*(n+1)/2 - (sum - ans[1]);
+
+        return ans;
+    }
+}
