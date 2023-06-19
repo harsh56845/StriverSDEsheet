@@ -1,0 +1,54 @@
+//Codinninjas link:- https://www.codingninjas.com/codestudio/problems/count-inversions_8230680?challengeSlug=striver-sde-challenge
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long conqure(long[] arr,int s,int mid,int e){
+        int cnt = 0;
+        long ans = 0;
+        long[] merged = new long[e-s+1];
+        int i = s;
+        int j = mid+1;
+        while(i<=mid && j<=e){
+            if(arr[i]<arr[j]){
+                merged[cnt++] = arr[i++];
+            }else{
+                merged[cnt++] = arr[j++];
+                ans+=mid-i+1;
+            }
+        }
+         while(i<=mid){
+             merged[cnt++] = arr[i++];
+         }
+         while(j<=e){
+             merged[cnt++] = arr[j++];
+            //  ans+=(mid-i+1);
+         }
+         for(int f=0,g=s;f<merged.length;f++,g++){
+             arr[g] = merged[f];
+         }
+         return ans;
+    }
+    public static long divide(long arr[],int start,int end){
+        long ans = 0;
+        if(start<end){
+            int mid = start + (end-start)/2; // 
+            ans+=divide(arr,start,mid);
+            ans+=divide(arr,mid+1,end);
+            ans+=conqure(arr,start,mid,end);
+        }
+        return ans;
+    }
+    public static long getInversions(long arr[], int n) {
+        return divide(arr,0,n-1);
+        // Write your code here.
+        // long ans = 0;
+        // for(int i=0;i<n;i++){
+        //     for(int j=i+1;j<n;j++){
+        //         if(arr[i]>arr[j]){
+        //             ans++;
+        //         }
+        //     }
+        // }
+        // return ans;
+    }
+}
