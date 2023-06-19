@@ -1,0 +1,39 @@
+// leetcode Lnk:- https://leetcode.com/problems/search-a-2d-matrix/description/
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int low = 0;
+        int high = r*c-1;
+        while(low<=high){
+            int mid = low+(high-low)/2;
+            if(matrix[mid/c][mid%c]>target){
+                high = mid-1;
+            }
+            else if(matrix[mid/c][mid%c]<target){
+                low = mid+1;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+// codingNinjas link :- https://www.codingninjas.com/codestudio/problems/search-in-a-2d-matrix_8230773?challengeSlug=striver-sde-challenge
+import java.util.ArrayList;
+public class Solution {
+    static boolean searchMatrix(ArrayList<ArrayList<Integer>> mat, int target) {
+        // Write your code here.
+        for(int i=0;i<mat.size();i++){
+            for(int j=0;j<mat.get(i).size();j++){
+                if(mat.get(i).get(j)==target){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
