@@ -1,3 +1,17 @@
+// Leetcode link :- https://leetcode.com/problems/missing-number/
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int totalSum  = (n+1)*n/2;
+        int arraySum = 0;
+        for(int i:nums){
+            arraySum+=i;
+        }
+
+        return totalSum - arraySum;
+    }
+}
+
 // coding ninjas -> https://www.codingninjas.com/codestudio/problems/missing-and-repeating-numbers_8230733?challengeSlug=striver-sde-challenge&leftPanelTab=1
 import java.util.* ;
 import java.io.*; 
