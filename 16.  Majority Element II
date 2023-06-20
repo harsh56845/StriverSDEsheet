@@ -1,0 +1,86 @@
+// Leetcode Link :- https://leetcode.com/problems/majority-element-ii/description/
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> sol = new ArrayList<Integer>();
+        int c1=0,c2=0;
+        int e1=0,e2=0;
+        for(int i:nums){
+            if(c1==0 && e2!=i){
+                c1 = 1;
+                e1 = i;
+            }
+            else if(c2==0 && e1!=i){
+                c2 = 1;
+                e2 = i;
+            }
+            else if(e1==i){
+                c1++;
+            }
+            else if(e2==i){
+                c2++;
+            }
+            else{
+                c1--;
+                c2--;
+            }
+        }
+        c1 = 0; c2 = 0;
+        for(int i:nums){
+            if(e1==i) c1++;
+            if(e2==i) c2++;
+        }
+        if(c1>nums.length/3) sol.add(e1);
+        if(c2>nums.length/3 && e1!=e2) sol.add(e2);
+        return sol;
+    }
+}
+
+// Coding Ninjas link :- https://www.codingninjas.com/studio/problems/majority-element-ii_8230738?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+
+public class Solution 
+{
+    public static ArrayList<Integer> majorityElementII(ArrayList<Integer> arr) 
+    {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        int ct1 = 0;
+        int ct2 = 0;
+        int e1 = 0;
+        int e2 = 0;
+        for(int i:arr){
+            if(ct1==0 && e2!=i){
+                ct1 = 1;
+                e1 = i;
+            }
+            else if(ct2==0 && e1!=i){
+                ct2 = 1;
+                e2 = i;
+            }
+            else if(i==e1){
+                ct1++;
+            }
+            else if(i==e2){
+                ct2++;
+            }
+            else{
+                ct1--;
+                ct2--;
+            }
+        }
+        ct1 = 0;
+        ct2 = 0;
+        int mlen = arr.size()/3;
+        for(int i:arr){
+            if(e1==i) ct1++;
+            if(e2==i) ct2++;
+        }
+        if(ct1>mlen) res.add(e1);
+        if(ct2>mlen) res.add(e2);
+
+        return res;
+    }
+}
