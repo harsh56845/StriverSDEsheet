@@ -1,0 +1,60 @@
+// Leetcode link :- https://leetcode.com/problems/majority-element/description/
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        int maxEle = 0;
+        for(int i:nums){
+            if(count == 0){
+                count=1;
+                maxEle = i;
+            }
+            else if(i==maxEle){
+                count++;
+            }else{
+                count--;
+            }
+        }
+
+        return maxEle;
+        
+    }
+}
+
+// CodingNinjas Link :- https://www.codingninjas.com/studio/problems/day-6-majority-element_8230731?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+	public static int findMajority(int[] nums, int n) {
+		int c = 0;
+		int e = 0;
+		for(int i:nums){
+			if(c==0){
+				c = 1;
+				e = i;
+			}
+			else if(e!=i){
+				c--;
+			}
+			else{
+				c++;
+			}
+		}
+		int check = 0;
+		for(int i:nums){
+			if(i==e) check++;
+		}
+		return check>n/2 ? e : -1;
+		// Time & SpaceO(N) sol
+		// HashMap<Integer,Integer> map = new HashMap<>();
+		// for(int i:nums){
+		// 	map.put(i,map.getOrDefault(i, 0)+1);
+		// }
+		// for(int i : nums){
+		// 	if(map.get(i)>n/2){
+		// 		return i;
+		// 	}
+		// }
+		// return -1;
+	}
+}
