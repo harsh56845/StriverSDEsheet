@@ -1,0 +1,47 @@
+// Leetcode link :- https://leetcode.com/problems/unique-paths/description/
+class Solution {
+    public int uniquePaths(int m, int n) {
+       int N = n + m - 2;
+       int r = m - 1;
+       double res = 1;
+       for(int i=1;i<=r;i++){
+           res = res * (N-r+i)/i;
+       }
+       return (int)res;
+    }
+}
+
+// class Solution {
+//      public int uniquePathsHelper(int[][] dp,int i,int j,int m,int n){
+//         if(i>=m || j>=n){
+//             return 0;
+//         }
+//         if(i==m-1 && j==n-1){
+//             return 1;
+//         }
+//         if(dp[i][j]!=0) return dp[i][j];
+//         int r = uniquePathsHelper(dp,i+1,j,m,n); 
+//         int c = uniquePathsHelper(dp,i,j+1,m,n);
+//         return dp[i][j] = r+c;
+//      }
+//     public int uniquePaths(int m, int n) {
+//         int[][] dp = new int[m+1][n+1];
+//         return uniquePathsHelper(dp,0,0,m,n);
+//     }
+// }
+
+// CodingNinjas Link :- https://www.codingninjas.com/studio/problems/unique-paths_8230802?challengeSlug=striver-sde-challenge
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int uniquePaths(int m, int n) {
+		int N = n + m - 2;
+		int r = m - 1;
+		double res = 1;
+		for(int i=1;i<=r;i++){
+			res = res * (N-r+i)/i;
+			}
+			
+		return (int)res;
+	}
+}
