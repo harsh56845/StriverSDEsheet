@@ -1,0 +1,46 @@
+// Leetcode link :- https://leetcode.com/problems/powx-n/description/ 
+class Solution {
+    public double myPow(double x, int n) {
+        double ans = 1.0;
+        long nn = n;
+        if(nn<0) nn=nn*-1;
+
+        while(nn>0){
+            if(nn%2==0){
+                x = x*x;
+                nn = nn/2;
+            }
+            else{
+                ans = ans*x;
+                nn = nn-1;
+            }
+        }
+        if(n<0) return 1.0/ans;
+        return ans;
+    }
+}
+
+// COdingNinjas Link:- https://www.codingninjas.com/studio/problems/modular-exponentiation_8230803?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static int modularExponentiation(int x, int n, int m) {
+        // Write your code here.     
+        long ans = 1;
+        long nn = n;
+        long mn = m;
+        long xn = x;
+        while(nn>0){
+            if(nn%2==0){
+                xn = (xn%mn)*(xn%mn);
+                nn = nn/2;
+            }
+            else{
+                ans = (ans%mn)*(xn%mn);
+                nn = nn-1;
+            }
+        }   
+        return (int)(ans%mn);
+    }
+}
