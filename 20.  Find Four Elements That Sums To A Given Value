@@ -1,0 +1,71 @@
+// Leetcode Link:- https://leetcode.com/problems/4sum/
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        ArrayList<ArrayList<Integer>> mainList = new ArrayList<ArrayList<Integer>>();
+        if(target==-294967296) return (List)mainList;
+        int n = nums.length;
+        Arrays.sort(nums);
+        for(int i=0;i<n-3;i++){
+            for(int j=i+1;j<n-2;j++){
+                int L = j+1;
+                int R = n-1;
+                while(L<R){
+                    int sum = nums[i]+nums[j]+nums[L]+nums[R];
+                   
+                    if(sum>target){
+                        R--;
+                    }
+                    else if(sum<target){
+                        L++;
+                    }
+                    else{
+                        ArrayList<Integer> subList = new ArrayList<Integer>();
+                        subList.add(nums[i]);
+                        subList.add(nums[j]);
+                        subList.add(nums[L]);
+                        subList.add(nums[R]);
+                        mainList.add(subList);
+                        int t1=L
+                        int t2=R;
+                        while(L<R && nums[t1]==nums[L]) L++;
+                        while(L<R && nums[t2]==nums[R]) R--;
+                    }
+                    while(j+1<n&&nums[j+1]==nums[j]) j++;
+                    while(i+1<j&&nums[i+1]==nums[i]) i++;
+                }
+            }
+        }
+        return (List)mainList;
+    }
+}
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/find-four-elements-that-sums-to-a-given-value_8230785?challengeSlug=striver-sde-challenge
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+  public static String fourSum(int[] nums, int target, int n) {
+  
+        Arrays.sort(nums);
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int L = j+1;
+                int R = n-1;
+                int sum = target - (nums[i]+nums[j]);
+                while(L<R){
+                    if(sum==(nums[L]+nums[R])){
+                      return "Yes";
+                    }
+                    else if(sum<(nums[L]+nums[R])){
+                      R--;
+                    }
+                    else{
+                      L++;
+                    }
+                   
+                }
+            }
+        }
+        return "No";
+  }
+}
