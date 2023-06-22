@@ -1,0 +1,50 @@
+// Leetcode Link :- https://leetcode.com/problems/longest-consecutive-sequence/
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int i:nums) set.add(i);
+        int maxCons = 1;
+        int currCount = 0;
+        int lastSmallele = -99999;
+        for(int i:set){
+           if(lastSmallele == i-1){
+               lastSmallele = i;
+               currCount++;
+           }
+           else {
+               lastSmallele = i;
+               currCount = 1;
+           }
+           maxCons = Math.max(maxCons,currCount);
+        }
+        return maxCons;
+    }
+}
+
+// CodingNinjas Link :- https://www.codingninjas.com/studio/problems/longest-consecutive-sequence_8230708?challengeSlug=striver-sde-challenge
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+    public static int lengthOfLongestConsecutiveSequence(int[] nums, int N) {
+        // use hashset because it stores only unique elements
+        Set<Integer> hashSet = new HashSet<Integer>();
+        for (int num: nums) {
+            hashSet.add(num);
+        }
+        
+        int longest = 0;
+        for (int num: hashSet) {
+            // check if element is the start of a sequence: (element-1) does not exist in set
+            if (!hashSet.contains(num-1)) {
+                int length = 0;
+                while (hashSet.contains(num+length)) {
+                    length++;
+                }
+                
+                longest = Math.max(longest, length);
+            }
+        }
+        return longest;
+    }
+}
