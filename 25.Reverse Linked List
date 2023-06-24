@@ -1,0 +1,29 @@
+// Leetcode link:- https://leetcode.com/problems/reverse-linked-list/
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode node = null;
+        while(head!=null){
+            ListNode next = head.next;
+            head.next = node;
+            node = head;
+            head = next;
+        }
+        return node;
+    }
+}
+
+// Coding Ninjas Link:- https://www.codingninjas.com/studio/problems/reverse-linked-list_8230724?challengeSlug=striver-sde-challenge&leftPanelTab=0
+public class Solution 
+{
+    public static LinkedListNode<Integer> reverseLinkedList(LinkedListNode<Integer> head) 
+    {
+        LinkedListNode<Integer> ans = null;
+		while(head!=null){
+			LinkedListNode<Integer> next = head.next;
+			head.next = ans;
+			ans = head;
+			head = next;
+		}
+		return ans;
+    }
+}
