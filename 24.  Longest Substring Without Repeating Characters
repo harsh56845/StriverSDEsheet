@@ -1,0 +1,47 @@
+// Leetcode link :- https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character,Integer> map = new HashMap<>();
+        int j = 0;
+        int max = 0;
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+            if(map.containsKey(ch)){
+                j = Math.max(map.get(ch)+1,j);
+                // map.remove(ch);
+            }
+            // else{
+                map.put(ch,i);
+                int len = i-j+1; 
+                max = Math.max(max,len);
+                
+            // }
+            
+        }
+        return max;
+    }
+}
+
+// Coding Ninjas link:- https://www.codingninjas.com/studio/problems/longest-substring-without-repeating-characters_8230684?challengeSlug=striver-sde-challenge
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static int uniqueSubstrings(String input) 
+    {
+		
+		HashMap<Character,Integer> map = new HashMap<>();
+        int j = 0;
+        int max = 0;
+        for(int i=0;i<input.length();i++){
+            char ch = input.charAt(i);
+            if(map.containsKey(ch)){
+                j = Math.max(map.get(ch)+1,j);
+            }
+                map.put(ch,i);
+                int len = i-j+1; 
+                max = Math.max(max,len);
+        }
+        return max;
+	}
+}
