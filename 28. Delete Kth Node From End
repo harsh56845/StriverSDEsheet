@@ -1,0 +1,44 @@
+// Leetcode Link :- https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(n!=0){
+            fast = fast.next;
+            n--;
+        }
+        if(fast==null){
+            head = head.next;
+            return head;
+        }
+        while(fast.next!=null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return head;
+    }
+}
+
+// COding Ninjas Link :- https://www.codingninjas.com/studio/problems/delete-kth-node-from-end_8230725?challengeSlug=striver-sde-challenge&leftPanelTab=0
+public class Solution
+{
+    public static Node removeKthNode(Node head, int K)
+    {
+        Node slow = head;
+        while(K!=0)
+        { slow = slow.next;
+        K--;
+        }
+        if(slow==null) return head.next;
+        Node fast = head;
+        Node prev = null;
+        while(slow!=null){
+            prev = fast;
+            fast = fast.next;
+            slow = slow.next;
+        }
+        prev.next = prev.next.next;
+        return head;
+    }
+}
