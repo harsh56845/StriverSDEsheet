@@ -1,0 +1,28 @@
+// Leetcode link :- https://leetcode.com/problems/middle-of-the-linked-list/description/
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next; 
+        }
+        return slow;
+    }
+}
+
+
+
+// Coding Ninjas Link:- https://www.codingninjas.com/studio/problems/middle-of-linked-list_8230764?challengeSlug=striver-sde-challenge&leftPanelTab=0
+public class Solution
+{
+    public static Node findMiddle(Node head)
+    {
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next; 
+        }
+        return slow;
+    
