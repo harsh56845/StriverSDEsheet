@@ -1,0 +1,61 @@
+// leetcode link :- https://leetcode.com/problems/merge-two-sorted-lists/
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode ansNodeHead = new ListNode(-1);
+        ListNode ansNode = ansNodeHead;
+        while(list1!=null && list2!=null){
+            if(list1.val<list2.val){
+                ansNode.next = list1;
+                list1 = list1.next; 
+            }else{
+                ansNode.next = list2;
+                list2 = list2.next; 
+            }
+            ansNode = ansNode.next;
+        }
+         while(list1!=null){
+             ansNode.next = list1;
+             list1 = list1.next;
+            ansNode = ansNode.next;
+         }
+         while(list2!=null){
+             ansNode.next = list2;
+             list2 = list2.next;
+            ansNode = ansNode.next;
+         }
+        ansNodeHead = ansNodeHead.next;
+        return ansNodeHead;
+    }
+}
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/merge-two-sorted-linked-lists_8230729?challengeSlug=striver-sde-challenge
+public class Solution {
+	public static LinkedListNode<Integer> sortTwoLists(LinkedListNode<Integer> first, LinkedListNode<Integer> second) {
+		LinkedListNode<Integer> head = new LinkedListNode<Integer>(-1);
+        LinkedListNode<Integer> curr = head;
+        while(first!=null && second!=null){
+            if(first.data<second.data){
+                curr.next = first;
+                first = first.next;
+            }
+            else{
+                curr.next = second;
+                second = second.next;
+            }
+            curr = curr.next;
+        }
+        while(first!=null){
+            curr.next = first;
+            first = first.next;
+            curr = curr.next;
+        }
+        while(second!=null){
+            curr.next = second;
+            second = second.next;
+            curr = curr.next;
+        }
+        head = head.next;
+        return head;
+	}
+}
+
