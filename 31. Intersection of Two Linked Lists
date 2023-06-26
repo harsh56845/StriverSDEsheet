@@ -1,0 +1,89 @@
+// Leetcode Link :- https://leetcode.com/problems/intersection-of-two-linked-lists/description/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Approch 2 tc->O(N) , SC -> O(1)
+        int aCount = 0;
+        int bCount = 0;
+        ListNode a = headA;
+        ListNode b = headB;
+        while(a!=null){
+            aCount++;
+            a = a.next;
+        }
+        while(b!=null){
+            bCount++;
+            b = b.next;
+        }
+        while(aCount>bCount){
+            aCount--;
+            headA = headA.next;
+        }
+        while(aCount<bCount){
+            bCount--;
+            headB = headB.next;
+        }
+
+        while(headA!=headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+        // Approch 1 tc->O(N) , SC -> O(N)
+        // HashSet<ListNode> map = new HashSet<>();
+        // while(headA!=null){
+        //     map.add(headA);
+        //     headA = headA.next;
+        // }
+        // while(headB!=null){
+        //     if(map.contains(headB)){
+        //         return headB;
+        //     }
+        //     headB = headB.next;
+        // }
+        // return null;
+    }
+}
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/intersection-of-two-linked-lists_8230688?challengeSlug=striver-sde-challenge&leftPanelTab=0
+public class Solution {
+    public static int findIntersection(Node headA, Node headB) {
+        int aCount = 0;
+        int bCount = 0;
+        Node a = headA;
+        Node b = headB;
+        while(a!=null){
+            aCount++;
+            a = a.next;
+        }
+        while(b!=null){
+            bCount++;
+            b = b.next;
+        }
+        while(aCount>bCount){
+            aCount--;
+            headA = headA.next;
+        }
+        while(aCount<bCount){
+            bCount--;
+            headB = headB.next;
+        }
+
+        while(headA!=headB){
+            headA = headA.next;
+            headB = headB.next;
+        }
+        if(headA==null) return -1;
+        return headA.data;
+    }
+}
