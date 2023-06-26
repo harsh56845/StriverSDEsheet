@@ -1,0 +1,52 @@
+// Leetcode link:- https://leetcode.com/problems/add-two-numbers/description/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public int nodesSum(ListNode l1, ListNode l2){
+        int sum = 0;
+        if(l1!=null) sum+=l1.val;
+        if(l2!=null) sum+=l2.val;
+        return sum;
+    }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode ans = new ListNode(-1);
+        ListNode head = ans;
+        int carry = 0;
+        while(l1!=null || l2!=null){
+            int sum = nodesSum(l1,l2)+carry;
+            carry = sum/10;
+            int aSum = sum%10;
+            ListNode temp = new ListNode(aSum);
+            head.next = temp;
+            head = head.next;
+
+            if(l1!=null) l1 = l1.next;
+            if(l2!=null) l2 = l2.next;
+        }
+        if(carry!=0){
+            ListNode temp = new ListNode(carry);
+            head.next = temp;
+        }
+        ans = ans.next;
+        return ans;
+    }
+}
+
+
+// Coding NInjas link:- https://www.codingninjas.com/studio/problems/add-two-numbers-as-linked-lists_8230833?challengeSlug=striver-sde-challenge&leftPanelTab=0
+// NOTE BACKEND ISSUE  NO JAVA CODE PASSING
+
+
+
+
+
+
+
