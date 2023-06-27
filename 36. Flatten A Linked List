@@ -1,0 +1,114 @@
+// GFG Link :- https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
+class GfG
+{
+    Node merge(Node a,Node b){
+        Node head = new Node(-1);
+        Node ans = head;
+        while(a!=null & b!=null){
+            if(a.data<b.data){
+                ans.bottom = a;
+                a = a.bottom;
+            }
+            else{
+                ans.bottom = b;
+                b = b.bottom;
+            }
+            ans = ans.bottom;
+        }
+        if(a!=null){
+            ans.bottom = a;
+        }
+        else{
+            ans.bottom = b;
+        }
+        return head.bottom;
+    }
+    Node flatten(Node root)
+    {
+        if(root.next==null){
+            return root;
+        }
+        root.next = flatten(root.next);
+        
+        root = merge(root,root.next);
+        
+        return root;
+    }
+}
+
+
+// Coding NInjas Link :- https://www.codingninjas.com/studio/problems/flatten-a-linked-list_8230827?challengeSlug=striver-sde-challenge
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+     public Node child;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+         this.child = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+         this.child = null;
+     }
+     Node(int data, Node next, Node child)
+     {
+         this.data = data;
+         this.next = next;
+         this.child = child;
+     }
+ }
+
+ *****************************************************************/
+
+public class Solution {
+    static Node merge(Node a,Node b){
+        Node head = new Node(-1);
+        Node ans = head;
+        while(a!=null & b!=null){
+            if(a.data<b.data){
+                ans.child = a;
+                a = a.child;
+            }
+            else{
+                ans.child = b;
+                b = b.child;
+            }
+            ans = ans.child;
+        }
+        if(a!=null){
+            ans.child = a;
+        }
+        else{
+            ans.child = b;
+        }
+        return head.child;
+    }
+    public static Node flattenLinkedList(Node root) {
+        //Write your code here
+        if(root.next==null){
+            return root;
+        }
+        root.next = flattenLinkedList(root.next);
+        
+        root = merge(root,root.next);
+        
+        return root;
+    }
+}
+
+
+
+
+
+
+
+
