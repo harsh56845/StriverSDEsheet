@@ -1,0 +1,79 @@
+// leetcode link :- https://leetcode.com/problems/linked-list-cycle-ii/
+public class Solution {
+    public ListNode detectLoop(ListNode head){
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast){
+                return slow;
+            }
+        }
+        return null;
+    }
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = detectLoop(head);
+        if(slow==null) return null;
+        ListNode start = head;
+        while(slow!=start){
+            slow = slow.next;
+            start = start.next;
+        }
+        return start;
+    }
+}
+
+
+// Coding Ninajs Link :- https://www.codingninjas.com/studio/problems/linked-list-cycle-ii_8230823?challengeSlug=striver-sde-challenge&leftPanelTab=1
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+public class Solution {
+    public static Node detectLoop(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast){
+                return slow;
+            }
+        }
+        return null;
+    }
+    public static Node firstNode(Node head) {
+        Node slow = detectLoop(head);
+        if(slow==null) return null;
+        Node start = head;
+        while(slow!=start){
+            slow = slow.next;
+            start = start.next;
+        }
+        return start;
+    }
+}
