@@ -1,0 +1,143 @@
+// Leetcode Solution :- https://leetcode.com/problems/reverse-nodes-in-k-group/description/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    private ListNode reverse(ListNode prev, ListNode next) {
+        ListNode last = prev.next;
+        ListNode curr = last.next;
+        
+        while (curr != next) {
+            last.next = curr.next;
+            curr.next = prev.next;
+            prev.next = curr;
+            curr = last.next;
+        }
+        
+        return last;
+    }
+    public ListNode reverseKGroup(ListNode head, int k) {
+         if (head == null || k == 1) {
+            return head;
+        }
+        
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode prev = dummy;
+        int count = 0;
+        
+        ListNode curr = head;
+        while (curr != null) {
+            count++;
+            if (count % k == 0) {
+                prev = reverse(prev, curr.next);
+                curr = prev.next;
+            } else {
+                curr = curr.next;
+            }
+        }
+        
+        return dummy.next;
+    }
+}
+
+// COding Ninjas Link :- https://www.codingninjas.com/studio/problems/reverse-nodes-in-k-group_8230709?challengeSlug=striver-sde-challenge&leftPanelTab=2
+import java.io.*;
+import java.util.* ;
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+public class Solution {
+
+private static int findLength(Node head){
+
+int length=0;
+
+while(head!=null){
+
+length++;
+
+head=head.next;
+
+}
+
+return length;
+
+}
+
+public static Node getListAfterReverseOperation(Node head, int n, int b[]) {
+
+// Write your code here.
+
+if(head == null||head.next == null) return head;
+
+int length = findLength(head);
+
+Node dummyHead = new Node(0);
+
+dummyHead.next = head;
+
+Node pre = dummyHead;
+
+Node cur;
+
+Node nex;
+
+for(int i=0;i<n;i++) {
+
+if(length==0) break;
+
+if(b[i]==0) continue;
+
+cur = pre.next;
+
+nex = cur.next;
+
+for(int j=1;j<Math.min(b[i],length);j++) {
+
+cur.next = nex.next;
+
+nex.next = pre.next;
+
+pre.next = nex;
+
+nex = cur.next;
+
+}
+
+length = length-Math.min(b[i],length);
+
+pre = cur;
+
+}
+
+return dummyHead.next;
+
+ 
+
+}
+
+}
