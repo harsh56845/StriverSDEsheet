@@ -1,0 +1,51 @@
+// Leetcode Link:- https://leetcode.com/problems/trapping-rain-water/description/
+class Solution {
+    public int trap(int[] height) {
+        int n = height.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        int max = -999999;
+        for(int i= 0;i<n;i++){
+            max = Math.max(height[i],max);
+            left[i] = max;
+        }
+        max = -999999;
+        for(int i= n-1;i>=0;i--){
+            max = Math.max(height[i],max);
+            right[i] = max;
+        }
+        int trapWater = 0;
+        for(int i=0;i<n;i++){
+            trapWater += Math.min(left[i],right[i])-height[i];
+            // ans Math.max(ans,trapWater);
+        }
+        return trapWater;
+    }
+}
+
+// COding Ninjas Link :- https://www.codingninjas.com/studio/problems/trapping-rain-water_8230693?challengeSlug=striver-sde-challenge
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static long getTrappedWater(long[] arr, int n) {
+        // int n = height.length;?
+        long[] left = new long[n];
+        long[] right = new long[n];
+        long max = -999999;
+        for(int i= 0;i<n;i++){
+            max = Math.max(arr[i],max);
+            left[i] = max;
+        }
+        max = -999999;
+        for(int i= n-1;i>=0;i--){
+            max = Math.max(arr[i],max);
+            right[i] = max;
+        }
+        long trapWater = 0;
+        for(int i=0;i<n;i++){
+            trapWater += Math.min(left[i],right[i])-arr[i];
+            // ans Math.max(ans,trapWater);
+        }
+        return trapWater;
+    }
+}
