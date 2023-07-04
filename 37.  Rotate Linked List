@@ -1,0 +1,46 @@
+// Leetcodelink :- https://leetcode.com/problems/rotate-list/description/
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null || k==0) return head;
+
+        ListNode curr = head;
+        int len = 0;
+        while(curr.next!=null){
+            len++;
+            curr = curr.next;
+        }
+        len++;
+        curr.next = head;
+        int rotateTimes = len - k%len;
+        curr = head;
+        while(rotateTimes-->1) curr=curr.next;
+        head = curr.next;
+        curr.next = null;
+        return head;
+    }
+}
+
+
+// COingNinjas link :- https://www.codingninjas.com/studio/problems/rotate-linked-list_8230752?challengeSlug=striver-sde-challenge
+public class Solution {
+    public static Node rotate(Node head, int k) {
+        // Write your code here.
+        Node curr = head;
+        int size = 0;
+        while(curr.next!=null){
+            size++;
+            curr = curr.next;
+        }
+        size++;
+        curr.next = head;
+        k = size-k%size;
+        curr = head;
+        while(k-->1){
+            curr = curr.next;
+        }
+        head = curr.next;
+        curr.next = null;
+        return head;
+    }
+}
+
