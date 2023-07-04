@@ -1,0 +1,35 @@
+// Leetcode Link:- https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int n = nums.length;
+        int i=0;
+        for(int j=1;j<n;j++){
+            if(nums[i]!=nums[j]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+    }
+}
+
+
+// Coding Ninjas Link:- https://www.codingninjas.com/studio/problems/remove-duplicates-from-sorted-array_8230811?challengeSlug=striver-sde-challenge&leftPanelTab=1
+int removeDuplicates(vector<int> &arr, int n) {
+	// Write your code here.
+	 int i=0;
+
+    for(int j=1;j<n;j++){
+
+        if(arr[i]!=arr[j]){
+
+            i++;
+
+            swap(arr[i],arr[j]);
+
+        }
+
+    }
+
+    return i+1;
+}
