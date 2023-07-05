@@ -51,3 +51,32 @@ public class Solution {
         return ans;
     }
 }
+
+
+GFG LInk : - https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1
+class meeting{
+    int start;
+    int end;
+    int pos;
+    meeting(int start,int end,int pos){
+        this.start = start;
+        this.end = end;
+        this.pos = pos;
+    }
+}
+class meetingComprator implements Comparator<meeting>{
+    @Override
+    public int compare(meeting op1,meeting op2){
+        if(op1.end<op2.end){
+            return -1;
+        }
+        else if(op1.end>op2.end){
+            return 1;
+        }
+        else if(op1.pos<op2.pos){
+            return -1;
+        }
+        // else 
+            return 1;
+    }
+}
