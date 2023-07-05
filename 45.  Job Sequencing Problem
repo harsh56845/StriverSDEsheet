@@ -1,0 +1,64 @@
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/job-sequencing-problem_8230832?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static int jobScheduling(int[][] jobs)
+    {
+        Arrays.sort(jobs,(a,b)->(b[1]-a[1]));
+        int maxi = 0;
+        for(int i=0;i<jobs.length;i++){
+            for(int j=0;j<2;j++){
+                maxi = Math.max(maxi,jobs[i][j]);
+            }
+        }
+        int[] units = new int[maxi+1];
+        Arrays.fill(units,-1);
+        int maxProfit =0;
+        for(int i=0;i<jobs.length;i++){
+            int dl = jobs[i][0];
+            int pro = jobs[i][1];
+            for(int j=dl;j>0;j--){
+                if(units[j]==-1){
+                    units[j]=i;
+                    maxProfit+=pro;
+                    break;
+                }
+            }
+        }
+        return maxProfit;
+    }
+}
+
+
+// GFG Link :- https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#
+class Solution
+{
+    //Function to find the maximum profit and the number of jobs done.
+    int[] JobScheduling(Job arr[], int n)
+    {
+        Arrays.sort(arr,(a,b)->(b.profit-a.profit));
+        int maxi = 0;
+        for(int i=0;i<n;i++){
+            maxi = Math.max(maxi,arr[i].deadline);
+        }
+        int[] units = new int[maxi+1];
+        Arrays.fill(units,-1);
+        int countJobs = 0;
+        int jobProfile = 0;
+        for(int i=0;i<n;i++){
+            int pro = arr[i].profit;
+            int dl = arr[i].deadline;
+            int id = arr[i].id;
+            for(int j=dl;j>0;j--){
+                if(units[j]==-1){
+                    units[j] = id;
+                    countJobs++;
+                    jobProfile+=pro;
+                    break;
+                }
+            }
+        }
+        return new int[]{countJobs,jobProfile};
+    }
+}
