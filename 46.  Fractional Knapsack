@@ -1,0 +1,62 @@
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/fractional-knapsack_8230767?challengeSlug=striver-sde-challenge&leftPanelTab=0
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Pair class:
+
+        class Pair
+        {
+        	int weight;
+	        int value;
+	        Pair(int weight, int value)
+	        {
+		        this.weight = weight;
+		        this.value = value;
+	        }
+	        
+        }
+        
+*****************************************************************/
+class itemsComparator implements Comparator<Pair>{
+	@Override
+	public int compare(Pair p1,Pair p2){
+		double r1 = (double)(p1.value)/(double)(p1.weight);
+		double r2 = (double)(p2.value)/(double)(p2.weight);
+		if(r1<r2) return 1;
+		else if(r1>r2) return -1;
+		else return 0;
+	}
+}
+
+public class Solution {
+    public static double maximumValue(Pair[] items, int n, int w) {
+            // Write your code here.
+    	    // ITEMS contains {weight, value} pairs.
+			itemsComparator pc = new itemsComparator();
+			Arrays.sort(items, pc);
+			// for(Pair k:items){
+			// 	System.out.println(k.weight+" "+k.value);
+			// }
+			int currW = 0;
+			double ans = 0.00;
+			for(Pair p : items){
+				if(currW + p.weight<=w){
+					currW+=p.weight;
+					ans+=(double)p.value;
+				}
+				else{
+					int remain = w - currW;
+					double units = (double)((double)p.value/(double)p.weight);
+					ans+=(double)(units*remain);
+					break; 
+				}
+			}
+			return ans;
+    }
+}
+
+// GFG LInk :- https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
+
+
+
