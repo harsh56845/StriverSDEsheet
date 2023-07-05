@@ -1,0 +1,62 @@
+// Coding Ninjas Solution :- https://www.codingninjas.com/studio/problems/find-minimum-number-of-coins_8230766?challengeSlug=striver-sde-challenge&leftPanelTab=0
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+public static int findMinimumCoins(int amount)
+    {
+        int minCoins = 0;
+        int[] coins = {1,2,5,10,20,50,100,500,1000};
+        int cn = coins.length;
+        while(amount!=0){
+            for(int j=cn-1;j>=0;j--){
+                if(amount>=coins[j]){
+                    minCoins++;
+                    amount-=coins[j];
+                    break;
+                }
+            }
+        }
+        return minCoins;
+    }
+}
+
+// GFG Link :- https://practice.geeksforgeeks.org/problems/number-of-coins1824/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+class Solution{
+
+	public int minCoins(int coins[], int M, int V) 
+	{ 
+	    // table[i] will be storing the minimum number of coins 
+	    // required for i value.  So table[V] will have result 
+	    int table[] = new int[V+1]; 
+	  
+	    // Base case (If given value V is 0) 
+	    table[0] = 0; 
+	  
+	    // Initialize all table values as Infinite 
+	    for (int i=1; i<=V; i++) 
+	        table[i] = Integer.MAX_VALUE; 
+	  
+	    // Compute minimum coins required for all 
+	    // values from 1 to V 
+	    for (int i=1; i<=V; i++) 
+	    { 
+	        // Go through all coins smaller than i 
+	        for (int j=0; j<M; j++) 
+	        {
+	          	if (coins[j] <= i) 
+	          	{ 
+	              	int sub_res = table[i-coins[j]]; 
+	              	if(sub_res != Integer.MAX_VALUE  && sub_res + 1 < table[i]) 
+	                  	table[i] = sub_res + 1; 
+	          	}
+	        } 
+	    } 
+
+	    if(table[V]==Integer.MAX_VALUE)
+	    	return -1;
+
+	    return table[V]; 
+	} 
+	  
+};
