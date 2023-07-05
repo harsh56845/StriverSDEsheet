@@ -1,0 +1,46 @@
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/minimum-number-of-platforms_8230720?challengeSlug=striver-sde-challenge&leftPanelTab=0
+import java.util.Arrays;
+
+public class Solution {
+    public static int calculateMinPatforms(int at[], int dt[], int n) {
+        Arrays.sort(at);
+        Arrays.sort(dt);
+        int platform = 1; int max =1;
+        int i=0;
+        int j=1;
+        while(i<n && j<n){
+            if(dt[i]>=at[j]){
+                platform++;
+                j++;
+            }
+            else if(dt[i]<at[j]){
+                platform--;
+                i++;
+            }
+            max = Math.max(max,platform);
+        }
+        return max;
+    }
+}
+
+// GFG Link :- https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1#
+static int findPlatform(int at[], int dt[], int n)
+    {
+        Arrays.sort(at);
+        Arrays.sort(dt);
+        int platform = 1; int max =1;
+        int i=0;
+        int j=1;
+        while(i<n && j<n){
+            if(dt[i]>=at[j]){
+                platform++;
+                j++;
+            }
+            else if(dt[i]<at[j]){
+                platform--;
+                i++;
+            }
+            max = Math.max(max,platform);
+        }
+        return max;
+    }
