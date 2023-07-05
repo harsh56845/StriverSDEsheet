@@ -1,0 +1,52 @@
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/maximum-activities_8230800?challengeSlug=striver-sde-challenge
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.*;
+
+class Pair{
+    int start = 0;
+    int end = 0;
+    Pair(int start,int end){
+        this.start = start;
+        this.end = end;
+    }
+}
+class PairCompartor implements  Comparator<Pair>{
+    @Override
+    public int compare(Pair p1,Pair p2){
+        if(p1.start>p2.start){
+            return 1;
+        }
+        else return -1;
+    }
+}
+public class Solution {
+    public static int maximumActivities(List<Integer> start, List<Integer> end) {
+        ArrayList<Pair> ans = new ArrayList<>();
+        for(int i=0;i<start.size();i++){
+            ans.add(new Pair(start.get(i),end.get(i)));
+        }
+        Collections.sort(ans,new PairCompartor());
+        
+        // for(Pair p: ans){
+        //     System.out.println(p.start+"  "+p.end);
+        // }
+        int maxActi = 1;
+        int s = ans.get(0).start;
+        int preEnd = ans.get(0).end;
+        for(int i=1;i<ans.size();i++){
+            int currStart = ans.get(i).start;
+            int currEnd = ans.get(i).end;
+            if(preEnd>currStart){
+                preEnd = Math.min(preEnd,currEnd);
+            }
+            else{
+                maxActi++;
+                s = currStart;
+                preEnd = currEnd;
+            }
+        }
+        return maxActi;
+    }
+}
+
