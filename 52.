@@ -1,0 +1,60 @@
+// Leetcode Link :- https://leetcode.com/problems/combination-sum-ii/
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> list = new ArrayList<>();
+        Arrays.sort(candidates);
+        combination2( 0,candidates, target, res, list);
+        return res;
+    }
+    public void combination2(int index, int[] arr, int target, List<List<Integer>> res, List<Integer> list){
+        if(target == 0){
+            Collections.sort(list);
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for(int i = index;i < arr.length;i++){
+            if(i > index && arr[i] == arr[i - 1]) continue;
+            if(target < arr[i]) break;
+
+            list.add(arr[i]);
+            combination2(i + 1, arr, target - arr[i], res, list);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
+// Codind Ninjas LInk :- https://www.codingninjas.com/studio/problems/combination-sum-ii_8230820?challengeSlug=striver-sde-challenge&leftPanelTab=1
+import java.util.*;
+public class Solution 
+{
+    public static ArrayList<ArrayList<Integer>> combinationSum2(ArrayList<Integer> arr, int n, int target)
+    {
+        Collections.sort(arr);
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> inner = new ArrayList<>();
+        func(arr, target, res, inner, 0);
+        return res;
+    }
+
+    public static void func(ArrayList<Integer> arr, int target, ArrayList<ArrayList<Integer>> res, ArrayList<Integer> inner, int ind)
+    {
+          if(target == 0)
+          {
+               res.add(new ArrayList<>(inner));
+               return;
+          }  
+
+          for(int i=ind;i<arr.size();i++)
+          {
+            if( i > ind && arr.get(i) == arr.get(i-1) ) continue;
+            if (arr.get(i) > target) break;
+            if(arr.get(i) <= target )
+            {
+            inner.add(arr.get(i));
+            func( arr, target - arr.get(i), res, inner, i+1);
+            inner.remove(inner.size()-1);
+            }
+          } 
+    }
+}
