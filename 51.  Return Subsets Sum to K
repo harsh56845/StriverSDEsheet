@@ -1,0 +1,47 @@
+// Leetcode Link :- https://leetcode.com/problems/combination-sum/description/
+class Solution {
+    public void helper(int[] arr, int target,int idx, ArrayList<ArrayList<Integer>> ans,ArrayList<Integer> ds){
+        if(idx==arr.length){
+            if(target==0){
+                ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        if(arr[idx]<=target){
+            ds.add(arr[idx]);
+            helper(arr,target-arr[idx],idx,ans,ds);
+            ds.remove(ds.size()-1);
+        }
+        helper(arr,target,idx+1,ans,ds);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        helper(candidates,target,0,ans,new ArrayList<>());
+        return (List)ans;
+    }
+}
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/return-subsets-sum-to-k_8230706?challengeSlug=striver-sde-challenge
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static void helper(ArrayList<Integer>arr, int target,int idx, ArrayList<ArrayList<Integer>> ans,ArrayList<Integer> ds){
+        if(idx==arr.size()){
+            if(target==0){
+                ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        ds.add(arr.get(idx));
+        helper(arr,target-arr.get(idx),idx+1,ans,ds);
+        ds.remove(ds.size()-1);
+        helper(arr,target,idx+1,ans,ds);
+    }
+    public static ArrayList<ArrayList<Integer>> findSubsetsThatSumToK(ArrayList<Integer> arr, int n, int tar) 
+	{
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        helper(arr,tar,0,ans,new ArrayList<>());
+        return ans;
+    }
+}
