@@ -1,0 +1,38 @@
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/subset-sum_8230859?challengeSlug=striver-sde-challenge&leftPanelTab=0
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void helper(int[] arr,int sum,int i,ArrayList<Integer> res){
+        if(i==arr.length){
+            res.add(sum);
+            return;
+        }
+        helper(arr,sum+arr[i],i+1,res);
+        helper(arr,sum,i+1,res);
+    }
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        ArrayList<Integer> sol = new  ArrayList<Integer>();
+        helper(num,0,0,sol);
+        Collections.sort(sol);
+        return sol;
+    }
+
+}
+
+// GFG Link :- https://practice.geeksforgeeks.org/problems/subset-sums2234/1
+class Solution{
+    void helper(ArrayList<Integer> arr,int sum,int i,ArrayList<Integer> res){
+        if(i==arr.size()){
+            res.add(sum);
+            return;
+        }
+        helper(arr,sum+arr.get(i),i+1,res);
+        helper(arr,sum,i+1,res);
+    }
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        ArrayList<Integer> sol = new  ArrayList<Integer>();
+        helper(arr,0,0,sol);
+        Collections.sort(sol);
+        return sol;
+    }
+}
