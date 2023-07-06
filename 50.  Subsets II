@@ -1,0 +1,49 @@
+// Leetcode Link :- https://leetcode.com/problems/subsets-ii/
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> outer=new ArrayList<>();
+        outer.add(new ArrayList<>());
+        int start=0;
+        int end=0;
+        for(int i=0;i<nums.length;i++){
+            start=0;
+            if(i>0 && nums[i]==nums[i-1]){
+                start=end+1;
+            }
+            end=outer.size()-1;
+            int n=outer.size();
+            for(int j=start;j<n;j++){
+                List<Integer> internal=new ArrayList<>(outer.get(j));
+                internal.add(nums[i]);
+                outer.add(internal);
+            }
+        }
+        return outer;
+    }
+}
+
+
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/subsets-ii_8230855?challengeSlug=striver-sde-challenge&leftPanelTab=0
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void Helper(int arr[],int idx,ArrayList<Integer> temp,ArrayList<ArrayList<Integer>> ans){
+
+        ans.add(new ArrayList<>(temp));
+        for(int i=idx;i<arr.length;i++){
+            if(i!=idx && arr[i]==arr[i-1]) continue;
+            temp.add(arr[i]);
+            Helper(arr,i+1,temp,ans);
+            temp.remove(temp.size()-1);
+        }
+    }
+    public static ArrayList<ArrayList<Integer>> uniqueSubsets(int n, int arr[]) {
+        Arrays.sort(arr);
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        Helper(arr,0,new ArrayList<>(),ans);
+        return ans;
+    }
+
+}
