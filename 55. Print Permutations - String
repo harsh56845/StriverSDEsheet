@@ -1,0 +1,45 @@
+// Leetcode Link :- https://leetcode.com/problems/permutations/
+class Solution {
+    // 0,nums,ans,ds //1
+    public void helper(int idx,int[] nums,List<List<Integer>> ans,List<Integer> ds){
+        if(ds.size()==nums.length)
+            ans.add(new ArrayList<>(ds));
+        else
+        for(int i=0;i<nums.length;i++){ // i = 0 -> 1 ->2 -3
+            if(ds.contains(nums[i])) continue;
+            ds.add(nums[i]);
+            helper(i+1,nums,ans,ds);
+            ds.remove(ds.size()-1);
+        }
+    }
+    // ds-> 1 2 
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+
+        helper(0,nums,ans,new ArrayList<>());
+        return ans;
+    }
+}
+
+
+// Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/day-13-print-permutations-string_8230703?challengeSlug=striver-sde-challenge
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void Helper(String str,String asf,List<String> list,int n){
+        if(asf.length()==n){
+            // if(asf.length()==n)
+            list.add(asf);
+            return;
+        }
+        for(int i=0;i<str.length();i++){
+            Helper(str.substring(0,i)+str.substring(i+1),asf+str.charAt(i),list,n);
+        }
+    }
+    public static List<String> findPermutations(String s) {
+        // Write your code here.
+        List<String> list = new ArrayList<>();
+        Helper(s,"",list,s.length());
+        return list;
+    }
+}
