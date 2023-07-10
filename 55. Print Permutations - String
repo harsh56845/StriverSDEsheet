@@ -21,6 +21,57 @@ class Solution {
     }
 }
 
+OR
+// Swap approch
+class Solution {
+    public void helper(int idx,int[] arr, List<List<Integer>> ans){
+        if(idx==arr.length){
+            List<Integer> list = new ArrayList<Integer>();
+            for(int i:arr) list.add(i);
+            ans.add(list);
+            return;
+        }
+        for(int i=idx;i<arr.length;i++){
+            swap(arr,i,idx);
+            helper(idx+1,arr,ans);       
+            swap(arr,i,idx);
+        }
+    }
+    public void swap(int[] arr,int i,int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(0,nums,ans);
+        return ans;
+    }
+}
+
+
+// class Solution {
+//     // 0,nums,ans,ds //1
+//     public void helper(int idx,int[] nums,List<List<Integer>> ans,List<Integer> ds){
+//         if(ds.size()==nums.length)
+//             ans.add(new ArrayList<>(ds));
+//         else
+//         for(int i=0;i<nums.length;i++){ // i = 0 -> 1 ->2 -3
+//             if(ds.contains(nums[i])) continue;
+//             ds.add(nums[i]);
+//             helper(i+1,nums,ans,ds);
+//             ds.remove(ds.size()-1);
+//         }
+//     }
+//     // ds-> 1 2 
+//     public List<List<Integer>> permute(int[] nums) {
+//         List<List<Integer>> ans = new ArrayList<>();
+
+//         helper(0,nums,ans,new ArrayList<>());
+//         return ans;
+//     }
+// }
+ 
 
 // Coding Ninjas Link :- https://www.codingninjas.com/studio/problems/day-13-print-permutations-string_8230703?challengeSlug=striver-sde-challenge
 import java.util.* ;
