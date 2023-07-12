@@ -1,0 +1,26 @@
+// Coding Ninjas  Link :- https://www.codingninjas.com/studio/problems/allocate-books_8230810?challengeSlug=striver-sde-challenge&leftPanelTab=1
+#include <bits/stdc++.h> 
+bool ispossible(long long & hpd, int& limit, vector<int> &times){
+	long long count = 1, sum = 0;
+	for(int &time: times){
+		if(time>hpd) return false;
+		if(sum+time<=hpd) sum+=time;
+		else {
+			count++;
+			sum = time;
+			}
+        }
+	return count<=limit;
+}
+
+long long ayushGivesNinjatest(int n, int m, vector<int> time) 
+{	
+	long long l = 1, r = LLONG_MAX, mid;
+	while(l<r){
+		mid = l+(r-l)/2;
+		if(ispossible(mid, n, time)) r = mid;
+		else l = mid+1;
+	}
+	return l;
+}
+
